@@ -24,6 +24,9 @@ dependencies {
 
 	//spring-security
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	//jackson
+	compileClasspath 'com.fasterxml.jackson.module:jackson-module-kotlin'
 }
 
 test {

@@ -1,20 +1,14 @@
 package son.jwt.Entity;
 
-import com.sun.istack.NotNull;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import son.jwt.Role.UserRole;
 
-import javax.annotation.processing.Generated;
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
-@Setter
 @Entity
-@Builder
 @Table(name = "User")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
 
     @Id
@@ -31,6 +25,14 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "board")
-    private List<Board> boards = new ArrayList<>();
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private UserRole userRole = UserRole.ROLE_NOT_PERMITTED;
+
+    @Builder
+    public User(String email, String password, String name) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+    }
 }

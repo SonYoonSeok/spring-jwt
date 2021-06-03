@@ -1,9 +1,8 @@
 package son.jwt.Service;
 
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import son.jwt.DTO.UserRequest;
 import son.jwt.Entity.User;
 import son.jwt.Repository.UserRepository;
 
@@ -13,14 +12,12 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    @Transactional
-    public void signup(UserRequest request) {
-        userRepository.save(
-                User.builder()
-                        .email(request.getEmail())
-                        .password(request.getPassword())
-                        .name(request.getName())
-                        .build());
-
+    public void signup(User user) {
+        userRepository.save(User.builder()
+                .email(user.getEmail())
+                .password(user.getPassword())
+                .name(user.getName())
+                .build()
+        );
     }
 }
