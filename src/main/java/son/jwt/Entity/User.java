@@ -1,6 +1,7 @@
 package son.jwt.Entity;
 
 import com.sun.istack.NotNull;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@Builder
 @Table(name = "User")
 public class User {
 
@@ -20,23 +22,15 @@ public class User {
     @Column(name = "user_id")
     private Integer id;
 
-    @NotNull
+    @Column(name = "email")
     private String email;
 
-    @NotNull
+    @Column(name = "password")
     private String password;
 
+    @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "board")
     private List<Board> boards = new ArrayList<>();
-
-    public User() {
-    }
-
-    public User(String email, String password, String name) {
-        this.email = email;
-        this.password = password;
-        this.name = name;
-    }
 }
