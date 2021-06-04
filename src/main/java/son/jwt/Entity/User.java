@@ -1,5 +1,6 @@
 package son.jwt.Entity;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.*;
 import son.jwt.Role.UserRole;
 
