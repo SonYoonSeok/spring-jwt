@@ -5,6 +5,7 @@ import lombok.*;
 import son.jwt.Role.UserRole;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 @Getter
 @Entity
@@ -18,6 +19,7 @@ public class User {
     private Integer id;
 
     @Column(name = "email")
+    @Email(message = "올바른 이메일 주소를 입력해주세요.")
     private String email;
 
     @Column(name = "password")
