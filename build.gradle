@@ -30,6 +30,9 @@ dependencies {
 
 	//jackson
 	compileClasspath 'com.fasterxml.jackson.module:jackson-module-kotlin'
+
+	//jwt
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
 }
 
 test {
