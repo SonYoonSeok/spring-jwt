@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import son.jwt.Dto.UserDto;
 import son.jwt.Entity.User;
 import son.jwt.Service.JwtUserDetailService;
-import son.jwt.Service.UserService;
 
 @RequiredArgsConstructor
 @RestController
@@ -18,12 +17,8 @@ public class UserController {
     public Response signup(@RequestBody UserDto userDto) {
         Response response = new Response();
 
-        try {
-            userService.signup(userDto);
-            response.setMessage("회원가입 성공");
-        } catch (Exception e) {
-            response.setMessage("회원가입 실패");
-        }
+        userService.signup(userDto);
+        response.setMessage("회원가입 성공");
 
         return response;
     }

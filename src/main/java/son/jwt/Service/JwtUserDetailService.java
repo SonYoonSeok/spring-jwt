@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import son.jwt.Dto.UserDto;
 import son.jwt.Entity.User;
+import son.jwt.Exception.UserEmailAlreadyExistException;
 import son.jwt.Repository.UserRepository;
 
 @Service
@@ -27,6 +28,11 @@ public class JwtUserDetailService implements UserDetailsService {
     public Integer signup(UserDto userDto) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         userDto.setPassword(encoder.encode(userDto.getPassword()));
+
+        userRepository.findByEmail(userDto.getEmail())
+                .ifPresent(user -> {
+                    throw new UserEmailAlreadyExistException();
+                });
 
         return userRepository.save(User.builder()
                 .email(userDto.getEmail())
