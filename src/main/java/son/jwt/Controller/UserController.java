@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
 import org.springframework.web.bind.annotation.*;
 import son.jwt.Dto.UserDto;
-import son.jwt.Entity.User;
 import son.jwt.Service.JwtUserDetailService;
 
 @RequiredArgsConstructor

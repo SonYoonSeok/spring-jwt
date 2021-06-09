@@ -48,7 +48,7 @@ public class JwtTokenUtil implements Serializable {
     }
 
     // 토큰 발급
-    private String generateToken(UserDetails userDetails) {
+    public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         return doGenerateToken(claims, userDetails.getUsername());
     }
@@ -59,7 +59,7 @@ public class JwtTokenUtil implements Serializable {
                 .signWith(SignatureAlgorithm.ES256, secret).compact();
     }
 
-    private Boolean validateToken(String token, UserDetails userDetails) {
+    public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = getUsernameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
